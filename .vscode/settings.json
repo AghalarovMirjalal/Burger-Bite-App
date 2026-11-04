@@ -1,0 +1,9 @@
+{
+    "android.sdkPath":  "C:\\Users\\bless\\AppData\\Local\\Android\\Sdk",
+    "java.home":  "C:\\Program Files\\Android\\Android Studio\\jbr",
+    "terminal.integrated.env.windows":  {
+                                            "JAVA_HOME":  "C:\\Program Files\\Android\\Android Studio\\jbr",
+                                            "Path":  "C:\\Program Files\\Android\\Android Studio\\jbr\\bin;C:\\Users\\bless\\AppData\\Local\\Android\\Sdk\\platform-tools;C:\\Users\\bless\\AppData\\Local\\Android\\Sdk\\emulator;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\nodejs\\;C:\\Users\\bless\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\bless\\.dotnet\\tools;C:\\Users\\bless\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\bless\\AppData\\Roaming\\npm",
+                                            "ANDROID_HOME":  "C:\\Users\\bless\\AppData\\Local\\Android\\Sdk"
+                                        }
+}

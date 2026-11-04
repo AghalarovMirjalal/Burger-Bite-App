@@ -1,0 +1,64 @@
+{
+    "version":  "2.0.0",
+    "tasks":  [
+                  {
+                      "problemMatcher":  [
+                                             {
+                                                 "background":  {
+                                                                    "endsPattern":  ".*emulator.*",
+                                                                    "activeOnStart":  true,
+                                                                    "beginsPattern":  "^$"
+                                                                },
+                                                 "pattern":  {
+                                                                 "regexp":  "^$",
+                                                                 "message":  1,
+                                                                 "file":  1,
+                                                                 "location":  1
+                                                             },
+                                                 "owner":  "android"
+                                             }
+                                         ],
+                      "label":  "Android: Start Emulator",
+                      "isBackground":  true,
+                      "command":  "emulator -avd Medium_Phone_API_37.0 -no-snapshot-load",
+                      "type":  "shell",
+                      "presentation":  {
+                                           "panel":  "shared",
+                                           "reveal":  "always"
+                                       },
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  }
+                  },
+                  {
+                      "label":  "Android: Install \u0026 Run",
+                      "problemMatcher":  [
+
+                                         ],
+                      "command":  "npx expo run:android --device Medium_Phone_API_37.0",
+                      "type":  "shell",
+                      "presentation":  {
+                                           "panel":  "shared",
+                                           "reveal":  "always"
+                                       },
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  }
+                  },
+                  {
+                      "label":  "Expo: Start",
+                      "problemMatcher":  [
+
+                                         ],
+                      "command":  "npx expo start",
+                      "type":  "shell",
+                      "presentation":  {
+                                           "panel":  "shared",
+                                           "reveal":  "always"
+                                       },
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  }
+                  }
+              ]
+}

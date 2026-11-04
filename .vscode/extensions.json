@@ -1,0 +1,12 @@
+{
+    "recommendations":  [
+                            "ms-vscode.vscode-typescript-next",
+                            "dbaeumer.vscode-eslint",
+                            "formulahendry.auto-close-tag",
+                            "esbenp.prettier-vscode",
+                            "eamodio.gitlens",
+                            "ms-vscode.vscode-android",
+                            "ms-vscode.vscode-gradle",
+                            "christian-kohler.npm-intellisense"
+                        ]
+}
