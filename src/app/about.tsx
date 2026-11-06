@@ -1,51 +1,23 @@
-import { router } from 'expo-router';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { Background } from '../components/ui/Background';
-import { AppButton } from '../components/ui/AppButton';
-import { colors } from '../constants/colors';
-import { spacing } from '../constants/spacing';
+import { InfoPage } from '../components/InfoPage';
 
-export default function AboutScreen() {
+export default function PrivacyScreen() {
   return (
-    <SafeAreaView style={styles.root}>
-      <Background />
-      <View style={styles.container}>
-        <Text style={styles.title}>About Burger Bite</Text>
-        <Text style={styles.text}>Join us and start your journey to burger perfection.</Text>
-
-        <View style={styles.buttonWrap}>
-          <AppButton title="Back to welcome" onPress={() => router.replace('/')} color="#3A3940" />
-        </View>
-      </View>
-    </SafeAreaView>
+    <InfoPage
+      title="Privacy"
+      sections={[
+        {
+          title: 'What we keep',
+          text: 'Your name, email, profile photo, cart and order history. That is all we need to get burgers to you.',
+        },
+        {
+          title: 'Where it lives',
+          text: 'Everything is stored on this device only. Your password is never saved as plain text — we keep only a SHA-256 hash of it.',
+        },
+        {
+          title: 'Your control',
+          text: 'You can change your name and photo in Profile at any time. Logging out ends your session on this device.',
+        },
+      ]}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: spacing.xl,
-    paddingTop: 32,
-    justifyContent: 'center',
-  },
-  title: {
-    color: colors.white,
-    fontSize: 28,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
-  text: {
-    color: colors.textSecondary,
-    fontSize: 15,
-    lineHeight: 22,
-    textAlign: 'center',
-    marginTop: 16,
-  },
-  buttonWrap: {
-    marginTop: 32,
-  },
-});

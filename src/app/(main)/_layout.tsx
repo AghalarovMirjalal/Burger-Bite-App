@@ -1,6 +1,11 @@
 import { Stack } from 'expo-router';
 import { useTheme } from '../../theme';
 
+// a signed-in user always lands on the tabs (home) first
+export const unstable_settings = {
+  initialRouteName: '(tabs)',
+};
+
 export default function MainLayout() {
   const { colors } = useTheme();
 

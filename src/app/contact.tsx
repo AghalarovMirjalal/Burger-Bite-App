@@ -1,57 +1,61 @@
-import { router } from 'expo-router';
-import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { Background } from '../components/ui/Background';
-import { AppButton } from '../components/ui/AppButton';
-import { colors } from '../constants/colors';
-import { spacing } from '../constants/spacing';
+import { Ionicons } from '@expo/vector-icons';
+import { Linking, Pressable, Text, View } from 'react-native';
+import { InfoPage } from '../components/InfoPage';
+import { fonts, makeStyles, s, useTheme } from '../theme';
 
-export default function ContactScreen() {
-  const onContact = () => {
-    Alert.alert('Contact', 'Свяжитесь с нами для помощи');
-  };
+const channels = [
+  { icon: 'call-outline' as const, label: '+994 12 555 01 01', url: 'tel:+994125550101' },
+  { icon: 'mail-outline' as const, label: 'support@burgerbite.app', url: 'mailto:support@burgerbite.app' },
+];
+
+export default function HelpScreen() {
+  const { colors } = useTheme();
+  const styles = useStyles();
 
   return (
-    <SafeAreaView style={styles.root}>
-      <Background />
-      <View style={styles.container}>
-        <Text style={styles.title}>Contact</Text>
-        <Text style={styles.text}>Need help? Contact our support team for assistance.</Text>
-
-        <View style={styles.buttons}>
-          <AppButton title="Contact support" onPress={onContact} color={colors.login} />
-          <AppButton title="Back to welcome" onPress={() => router.replace('/')} color="#3A3940" />
+    <InfoPage
+      title="Help & Support"
+      sections={[
+        {
+          title: 'Order is late?',
+          text: 'Most orders arrive in 30–40 minutes. If it takes longer, call the restaurant and we will sort it out.',
+        },
+        {
+          title: 'Wrong or missing item',
+          text: 'Write to us with your order number (you can find it in Profile) and we will refund or resend it.',
+        },
+      ]}
+      footer={
+        <View style={styles.channels}>
+          {channels.map((channel) => (
+            <Pressable key={channel.url} style={styles.channel} onPress={() => Linking.openURL(channel.url)}>
+              <Ionicons name={channel.icon} size={s(20)} color={colors.orange} />
+              <Text style={styles.channelText}>{channel.label}</Text>
+            </Pressable>
+          ))}
         </View>
-      </View>
-    </SafeAreaView>
+      }
+    />
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.background,
+const useStyles = makeStyles((c) => ({
+  channels: {
+    gap: s(12),
   },
-  container: {
-    flex: 1,
-    paddingHorizontal: spacing.xl,
-    paddingTop: 32,
-    justifyContent: 'center',
+  channel: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: s(12),
+    height: s(54),
+    paddingHorizontal: s(18),
+    borderRadius: s(27),
+    borderWidth: 1,
+    borderColor: c.cardBorder,
   },
-  title: {
-    color: colors.white,
-    fontSize: 28,
-    fontWeight: '800',
-    textAlign: 'center',
+  channelText: {
+    color: c.text,
+    fontFamily: fonts.medium,
+    fontSize: s(14),
   },
-  text: {
-    color: colors.textSecondary,
-    fontSize: 15,
-    lineHeight: 22,
-    textAlign: 'center',
-    marginTop: 16,
-  },
-  buttons: {
-    marginTop: 32,
-    gap: spacing.sm,
-  },
-});
+}));
