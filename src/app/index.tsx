@@ -1,14 +1,19 @@
-import { router } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import { Image, Text, View } from 'react-native';
 import { DesignFrame, useFrameScale } from '../components/DesignFrame';
 import { GradientButton } from '../components/GradientButton';
 import { ScreenBackground } from '../components/ScreenBackground';
+import { SoftShadow } from '../components/SoftShadow';
+import { useAuth } from '../context/AuthContext';
 import { images } from '../data/burgers';
 import { fonts, makeStyles } from '../theme';
 
 // Launch screen
 export default function WelcomeScreen() {
   const styles = useStyles();
+  const { user } = useAuth();
+
+  if (user) return <Redirect href="/home" />;
 
   return (
     <View style={styles.root}>
@@ -26,7 +31,7 @@ function Welcome() {
 
   return (
     <>
-      <View style={[styles.shadow, { left: f(110), top: f(426), width: f(180), height: f(16), borderRadius: f(8) }]} />
+      <SoftShadow width={f(170)} height={f(12)} style={{ left: f(110), top: f(428) }} />
       <Image
         source={images.flying}
         resizeMode="contain"
@@ -83,13 +88,6 @@ const useStyles = makeStyles((c) => ({
   root: {
     flex: 1,
     backgroundColor: c.bg,
-  },
-  shadow: {
-    position: 'absolute',
-    backgroundColor: c.shadow,
-    shadowColor: '#000',
-    shadowOpacity: 0.9,
-    shadowRadius: 12,
   },
   title: {
     position: 'absolute',

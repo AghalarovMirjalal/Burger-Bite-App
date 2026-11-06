@@ -1,5 +1,5 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import type { BottomTabBarProps } from 'expo-router/js-tabs';
 import { Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { makeStyles, s, useTheme } from '../theme';
@@ -11,7 +11,7 @@ function TabIcon({ route, color }: { route: string; color: string }) {
 }
 
 // Three icons, the active one sits in the glowing orange circle (see the home mockup)
-export function TabBar({ state, navigation, descriptors }: BottomTabBarProps) {
+export function TabBar({ state, descriptors, navigateToTab }: BottomTabBarProps) {
   const { colors } = useTheme();
   const styles = useStyles();
   const insets = useSafeAreaInsets();
@@ -23,8 +23,7 @@ export function TabBar({ state, navigation, descriptors }: BottomTabBarProps) {
         const { options } = descriptors[route.key]!;
 
         const onPress = () => {
-          const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
-          if (!focused && !event.defaultPrevented) navigation.navigate(route.name);
+          if (!focused) navigateToTab(route.key);
         };
 
         return (

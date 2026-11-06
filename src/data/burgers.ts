@@ -55,7 +55,6 @@ export const burgers: Burger[] = [
     category: 'Classic',
     price: 239,
     rating: 5,
-    popular: true,
     image: images.bacon,
   },
   {

@@ -31,7 +31,7 @@ export function QuantityStepper({ value, onChange, min = 1, unit = (n) => n }: P
       <Pressable
         onPress={() => onChange(Math.max(value - 1, min))}
         disabled={value <= min}
-        style={({ pressed }) => [styles.circle, circle, pressed && styles.pressed, value <= min && styles.disabled]}
+        style={({ pressed }) => [styles.circle, circle, pressed && styles.pressed]}
         accessibilityLabel="Decrease quantity"
       >
         <MaterialCommunityIcons name="minus-thick" size={u(20)} color={colors.onCircle} />
@@ -54,9 +54,6 @@ const useStyles = makeStyles((c) => ({
   },
   pressed: {
     transform: [{ scale: 0.9 }],
-  },
-  disabled: {
-    opacity: 0.45,
   },
   value: {
     color: c.text,

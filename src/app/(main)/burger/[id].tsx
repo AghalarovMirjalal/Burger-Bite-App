@@ -6,6 +6,7 @@ import { DesignFrame, useFrameScale } from '../../../components/DesignFrame';
 import { GradientButton } from '../../../components/GradientButton';
 import { QuantityStepper } from '../../../components/QuantityStepper';
 import { ScreenBackground } from '../../../components/ScreenBackground';
+import { SoftShadow } from '../../../components/SoftShadow';
 import { findBurger, type Burger } from '../../../data/burgers';
 import { useAddToCart } from '../../../hooks/useAddToCart';
 import { formatPrice } from '../../../lib/format';
@@ -63,7 +64,7 @@ function Details({ burger }: { burger: Burger }) {
         <Ionicons name="ellipsis-horizontal" size={f(26)} color={colors.text} />
       </Pressable>
 
-      <View style={[styles.shadow, { left: f(85), top: f(338), width: f(220), height: f(16), borderRadius: f(8) }]} />
+      <SoftShadow width={f(210)} height={f(12)} style={{ left: f(90), top: f(340) }} />
       <Image
         source={burger.image}
         resizeMode="contain"
@@ -143,13 +144,6 @@ const useStyles = makeStyles((c) => ({
   },
   abs: {
     position: 'absolute',
-  },
-  shadow: {
-    position: 'absolute',
-    backgroundColor: c.shadow,
-    shadowColor: '#000',
-    shadowOpacity: 0.8,
-    shadowRadius: 12,
   },
   title: {
     position: 'absolute',

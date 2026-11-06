@@ -55,7 +55,7 @@ export default function DealsScreen() {
             <Pressable onPress={() => router.push('/cart')} style={styles.footer}>
               <Text style={styles.footerText}>Go to cart →</Text>
             </Pressable>
-          ) : null
+          ) : undefined
         }
       />
     </View>

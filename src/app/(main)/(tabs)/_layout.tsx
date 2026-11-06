@@ -1,13 +1,17 @@
-import { Tabs } from 'expo-router';
+import { Tabs } from 'expo-router/js-tabs';
 import { TabBar } from '../../../components/TabBar';
 import { useTheme } from '../../../theme';
+
+// the tab order follows the mockup (location, basket, piggy bank) but the app opens on the menu
+export const unstable_settings = {
+  initialRouteName: 'home',
+};
 
 export default function TabsLayout() {
   const { colors } = useTheme();
 
   return (
     <Tabs
-      initialRouteName="home"
       tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
         headerShown: false,

@@ -70,21 +70,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const userId = user?.id;
 
-  const [items, setItems] = useState<CartLine[]>([]);
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [promo, setPromo] = useState<Deal | null>(null);
+  const [storedItems, setItems] = useState<CartLine[]>([]);
+  const [storedOrders, setOrders] = useState<Order[]>([]);
+  const [storedNotifications, setNotifications] = useState<Notification[]>([]);
+  const [storedPromo, setPromo] = useState<Deal | null>(null);
   const [loadedFor, setLoadedFor] = useState<string | null>(null);
 
+  // state of a previous user is ignored until the current user's data is loaded
+  const active = !!userId && loadedFor === userId;
+  const items = useMemo(() => (active ? storedItems : []), [active, storedItems]);
+  const orders = useMemo(() => (active ? storedOrders : []), [active, storedOrders]);
+  const notifications = useMemo(() => (active ? storedNotifications : []), [active, storedNotifications]);
+  const promo = active ? storedPromo : null;
+
   useEffect(() => {
-    if (!userId) {
-      setItems([]);
-      setOrders([]);
-      setNotifications([]);
-      setPromo(null);
-      setLoadedFor(null);
-      return;
-    }
+    if (!userId) return;
 
     (async () => {
       const [savedCart, savedOrders, savedNotifications] = await Promise.all([
@@ -95,18 +95,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setItems(savedCart.filter((line) => findBurger(line.id)));
       setOrders(savedOrders);
       setNotifications(savedNotifications ?? welcomeNotifications());
+      setPromo(null);
       setLoadedFor(userId);
     })();
   }, [userId]);
 
   // persist only after the user's data has been loaded, otherwise we'd wipe it
   useEffect(() => {
-    if (userId && loadedFor === userId) writeJson(keys.cart(userId), items);
-  }, [items, userId, loadedFor]);
+    if (userId && loadedFor === userId) writeJson(keys.cart(userId), storedItems);
+  }, [storedItems, userId, loadedFor]);
 
   useEffect(() => {
-    if (userId && loadedFor === userId) writeJson(keys.notifications(userId), notifications);
-  }, [notifications, userId, loadedFor]);
+    if (userId && loadedFor === userId) writeJson(keys.notifications(userId), storedNotifications);
+  }, [storedNotifications, userId, loadedFor]);
 
   const add = useCallback((id: string, qty = 1) => {
     setItems((prev) => {

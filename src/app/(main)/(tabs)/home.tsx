@@ -36,6 +36,12 @@ export default function HomeScreen() {
     return list.length ? list : filtered.slice(0, 4);
   }, [filtered]);
 
+  // the menu below shows what is not already in the popular row
+  const menu = useMemo(() => {
+    const rest = filtered.filter((b) => !popular.includes(b));
+    return rest.length ? rest : filtered;
+  }, [filtered, popular]);
+
   const header = (
     <View>
       <View style={styles.topRow}>
@@ -97,7 +103,7 @@ export default function HomeScreen() {
       <ScreenBackground glow="left" />
       <View style={{ flex: 1, paddingTop: Math.max(insets.top - s(14), 0) }}>
         <BurgerCatalog
-          data={filtered}
+          data={menu}
           header={header}
           contentStyle={{ paddingBottom: count > 0 ? s(70) : s(20) }}
           emptyText="No burgers in this category"

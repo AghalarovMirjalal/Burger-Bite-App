@@ -61,9 +61,11 @@ function RootStack() {
           contentStyle: { backgroundColor: colors.bg },
         }}
       >
-        {/* Launch + Authentication */}
+        {/* Launch: sends a signed-in user straight to the menu */}
+        <Stack.Screen name="index" options={{ animation: 'fade' }} />
+
+        {/* Authentication */}
         <Stack.Protected guard={!user}>
-          <Stack.Screen name="index" options={{ animation: 'fade' }} />
           <Stack.Screen name="(auth)" />
         </Stack.Protected>
 

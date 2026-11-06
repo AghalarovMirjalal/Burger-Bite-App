@@ -79,7 +79,7 @@ export default function LogInScreen() {
               secure
               autoCapitalize="none"
               returnKeyType="done"
-              onSubmitEditing={handleSubmit(onSubmit)}
+              onSubmitEditing={() => handleSubmit(onSubmit)()}
             />
           )}
         />

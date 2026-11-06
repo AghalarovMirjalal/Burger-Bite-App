@@ -25,8 +25,8 @@ const dark = {
   onCircle: '#FFFFFF',
   stepper: '#2F2E34',
   shadow: 'rgba(0, 0, 0, 0.55)',
-  glowWarm: 'rgba(150, 100, 45, 0.32)',
-  glowOlive: 'rgba(120, 110, 60, 0.30)',
+  glowWarm: 'rgba(128, 96, 58, 0.42)',
+  glowOlive: 'rgba(112, 106, 68, 0.40)',
   overlay: 'rgba(10, 10, 12, 0.6)',
 };
 

@@ -4,6 +4,7 @@ import { Image, Pressable, Text, View } from 'react-native';
 import type { Burger } from '../../data/burgers';
 import { formatPrice } from '../../lib/format';
 import { fonts, makeStyles, s, useTheme } from '../../theme';
+import { SoftShadow } from '../SoftShadow';
 
 interface Props {
   burger: Burger;
@@ -18,7 +19,7 @@ export const PopularCard = memo(function PopularCard({ burger, onPress, onAdd }:
 
   return (
     <Pressable onPress={() => onPress(burger)} style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
-      <View style={styles.shadow} />
+      <SoftShadow width={s(96)} height={s(8)} style={{ top: s(122), left: s(40) }} />
       <Image source={burger.image} style={styles.image} resizeMode="contain" />
 
       <Text style={styles.name} numberOfLines={1}>
@@ -55,16 +56,6 @@ const useStyles = makeStyles((c) => ({
   },
   pressed: {
     opacity: 0.85,
-  },
-  shadow: {
-    position: 'absolute',
-    top: s(118),
-    left: s(36),
-    width: s(104),
-    height: s(10),
-    borderRadius: s(6),
-    backgroundColor: c.shadow,
-    opacity: 0.8,
   },
   image: {
     alignSelf: 'center',

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { Pressable, Text, View } from 'react-native';
 import { AuthScreen } from '../../components/AuthScreen';
 import { Avatar } from '../../components/Avatar';
@@ -29,11 +29,10 @@ export default function SignUpScreen() {
     control,
     handleSubmit,
     setFocus,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<SignUpForm>({ defaultValues: { name: '', email: '', password: '', confirm: '' } });
 
-  const name = watch('name');
+  const name = useWatch({ control, name: 'name' });
 
   const choosePhoto = async () => {
     const uri = await pickPhoto();
@@ -150,7 +149,7 @@ export default function SignUpScreen() {
               secure
               autoCapitalize="none"
               returnKeyType="done"
-              onSubmitEditing={handleSubmit(onSubmit)}
+              onSubmitEditing={() => handleSubmit(onSubmit)()}
             />
           )}
         />

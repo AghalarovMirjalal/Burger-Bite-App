@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { forwardRef, useState, type ComponentProps } from 'react';
+import { forwardRef, useState, type ComponentProps, type ComponentRef } from 'react';
 import { Pressable, Text, TextInput, View, type TextInputProps } from 'react-native';
 import { fonts, makeStyles, s, useTheme } from '../theme';
 
@@ -9,7 +9,7 @@ interface Props extends TextInputProps {
   secure?: boolean;
 }
 
-export const TextField = forwardRef<TextInput, Props>(function TextField({ icon, error, secure, style, ...rest }, ref) {
+export const TextField = forwardRef<ComponentRef<typeof TextInput>, Props>(function TextField({ icon, error, secure, style, ...rest }, ref) {
   const { colors } = useTheme();
   const styles = useStyles();
   const [focused, setFocused] = useState(false);
@@ -72,6 +72,7 @@ const useStyles = makeStyles((c) => ({
     fontFamily: fonts.regular,
     fontSize: s(15),
     paddingVertical: 0,
+    outlineWidth: 0,
   },
   error: {
     color: c.red,

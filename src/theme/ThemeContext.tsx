@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, type ImageStyle, type TextStyle, type ViewStyle } from 'react-native';
 import { palettes, type Palette, type ThemeMode } from './tokens';
 
 const STORAGE_KEY = 'bb:theme';
+
+type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle };
 
 interface ThemeContextValue {
   mode: ThemeMode;
@@ -46,7 +48,7 @@ export function useTheme() {
 }
 
 /** Builds a hook that returns StyleSheet styles for the current theme. */
-export function makeStyles<T extends StyleSheet.NamedStyles<T>>(factory: (c: Palette) => T) {
+export function makeStyles<T extends NamedStyles<T>>(factory: (c: Palette) => T) {
   return function useStyles() {
     const { colors } = useTheme();
     return useMemo(() => StyleSheet.create(factory(colors)), [colors]);

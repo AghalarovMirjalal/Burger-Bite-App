@@ -9,7 +9,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const insets = useSafeAreaInsets();
   const styles = useStyles();
   const [message, setMessage] = useState<string | null>(null);
-  const opacity = useRef(new Animated.Value(0)).current;
+  const [opacity] = useState(() => new Animated.Value(0));
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const show = useCallback(
@@ -35,7 +35,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     <ToastContext.Provider value={show}>
       {children}
       {message && (
-        <Animated.View pointerEvents="none" style={[styles.toast, { opacity, top: insets.top + s(12) }]}>
+        <Animated.View pointerEvents="none" style={[styles.toast, { opacity, bottom: insets.bottom + s(150) }]}>
           <Text style={styles.text}>{message}</Text>
         </Animated.View>
       )}
