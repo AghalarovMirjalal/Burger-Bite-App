@@ -7,8 +7,13 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "scheme": "burgerbite",
-    "plugins": ["expo-router"],
-    "ios": { "supportsTablet": true },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#242329",
@@ -18,6 +23,8 @@
       },
       "package": "com.aghalarovmirjalal.burgerbite"
     },
-    "web": { "favicon": "./assets/favicon.png" }
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
