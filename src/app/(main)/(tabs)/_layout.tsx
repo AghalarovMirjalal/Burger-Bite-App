@@ -4,7 +4,7 @@ import { useTheme } from '../../../theme';
 
 // the tab order follows the mockup (location, basket, piggy bank) but the app opens on the menu
 export const unstable_settings = {
-  initialRouteName: 'home',
+  anchor: 'home',
 };
 
 export default function TabsLayout() {
@@ -12,6 +12,7 @@ export default function TabsLayout() {
 
   return (
     <Tabs
+      backBehavior="initialRoute"
       tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
         headerShown: false,

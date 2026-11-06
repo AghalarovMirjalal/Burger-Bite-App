@@ -3,7 +3,7 @@ import { useTheme } from '../../theme';
 
 // a signed-in user always lands on the tabs (home) first
 export const unstable_settings = {
-  initialRouteName: '(tabs)',
+  anchor: '(tabs)',
 };
 
 export default function MainLayout() {
